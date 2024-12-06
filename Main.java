@@ -12,7 +12,7 @@ public class Main
     static String[] goodBye = {"Thank you for shopping with Chipotle!", "Have a good day!", "ChipotleBot out", "Come back soon!"};
     static String[] greetings = {"Hello! My name is ChipotleBot.", "Hi! I'm ChipotleBot.", "Hey, ChipotleBot here.", "wsg fam"};
     static String[] affirmative = {"yes", "yeah", "yea", "sure", "ok", "okay", "affirmative", "I would"};
-    static String[] negative = {"no", "nah", "naw", "not", "negative", "nay", "never"};
+    static String[] negative = {"no", "nah", "naw", "not", "negative", "nay", "never", "nope"};
    
    private static final String[] orderTypes = {"burrito", "bowl", "taco"};
     //creating ingredients
