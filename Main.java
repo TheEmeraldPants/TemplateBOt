@@ -39,6 +39,7 @@ public class Main
         boolean active = true;
         int calories = 0;
         double price = 0.0;
+        String name = "";
         boolean isVegetarian = false;
         while (active)
         {
@@ -166,11 +167,17 @@ public class Main
                                         for(int i = 0; i < orderIngredients.size(); i++){
                                                 price += orderIngredients.get(i).getPrice();
                                         }
+                                        
+                                        for(int i = 0; i < orderIngredients.size() - 1; i++){
+                                                name += orderIngredients.get(i).getName() + ", ";
+                                        }
+                                        name += "and " + orderIngredients.getLast().getName();
 
                                         Scanner scanr3 = new Scanner (System.in);
                                         boolean loop = true;
                                         if (phase == "end") loop = false;
                                         while (loop) {
+                                                System.out.println("You Ordered: " + name);
                                                 System.out.println("Would you like to know the 'price', the 'calories', 'both', or 'neither' of your order?");
                                                 String finalResponse = scanr3.nextLine().toLowerCase();
                                                 loop = false;
