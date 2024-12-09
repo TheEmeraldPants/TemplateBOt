@@ -11,6 +11,7 @@ public class Main
     //May want to create an array of goodbye answers.
     static String[] goodBye = {"Thank you for shopping with Chipotle!", "Have a good day!", "ChipotleBot out", "Come back soon!"};
     static String[] greetings = {"Hello! My name is ChipotleBot.", "Hi! I'm ChipotleBot.", "Hey, ChipotleBot here.", "wsg fam"};
+    static String[] error = {"I'm sorry, but there's been a miscommunication", "I'm sorry, I don't understand.", "I don't understand", "bro wtf you on"};
     static String[] affirmative = {"yes", "yeah", "yea", "sure", "ok", "okay", "affirmative", "I would", "want", "I am"};
     static String[] negative = {"no", "nah", "naw", "not", "negative", "nay", "never", "nope"};
    
@@ -65,7 +66,8 @@ public class Main
                                                         phase = "end";
                                                         break;
                                                 default: 
-                                                        System.out.println("I'm sorry, I think there's been a miscommunication. Would you like to order something?");
+                                                        System.out.println(randMessage(error));
+                                                        System.out.print(" Would you like to order something?");
                                                         break;
                                         }
                                 }
@@ -92,7 +94,7 @@ public class Main
                                                 break;
                                         }
                                         default: {
-                                                System.out.println("I'm sorry, but I don't understand.");
+                                                System.out.println(randMessage(error));
                                         } 
                                 }
                                 break;
@@ -196,7 +198,8 @@ public class Main
                                                         scanr3.close();
                                                         break;
                                                 default:
-                                                        System.out.println("Invalid option. Please type 'price', 'calories', 'both', or 'neither'."); loop = true; break;
+                                                        System.out.println(randMessage(error));
+                                                        System.out.print(" Please type 'price', 'calories', 'both', or 'neither'."); loop = true; break;
                                                 }
                                         }
                                         if (phase != "end") {
