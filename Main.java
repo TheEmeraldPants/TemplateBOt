@@ -40,6 +40,7 @@ public class Main
         int calories = 0;
         double price = 0.0;
         String name = "";
+        String orderName = "";
         boolean isVegetarian = false;
         while (active)
         {
@@ -122,6 +123,7 @@ public class Main
                                         break;
                                 } 
                                 else {
+                                        orderName = orderType;
                                         boolean ingredientCheck = true;
                                         while(ingredientCheck){
                                                 System.out.println("These are your ingredient choices");
@@ -158,8 +160,8 @@ public class Main
                                                         System.out.println("That is not a valid ingredient");
                                                 }
                                         }
-
                                         
+                                        name += "a " + orderName + " with: ";
                                         for(int i = 0; i < orderIngredients.size(); i++){
                                                 calories += orderIngredients.get(i).getCalories();
                                         }
@@ -168,10 +170,13 @@ public class Main
                                                 price += orderIngredients.get(i).getPrice();
                                         }
                                         
-                                        for(int i = 0; i < orderIngredients.size() - 1; i++){
-                                                name += orderIngredients.get(i).getName() + ", ";
+                                        if (orderIngredients.size() > 1) {
+                                                for(int i = 0; i < orderIngredients.size() - 1; i++){
+                                                        name += orderIngredients.get(i).getName() + ", ";
+                                                }
+                                                name += "and " + orderIngredients.getLast().getName();
                                         }
-                                        name += "and " + orderIngredients.getLast().getName();
+                                        else name += orderIngredients.getFirst().getName();
 
                                         Scanner scanr3 = new Scanner (System.in);
                                         boolean loop = true;
@@ -217,7 +222,7 @@ public class Main
                                                 loopEnd = false;
                                                 switch (interpretResponse(resp.toLowerCase(), "yesOrNo")) {
                                                         case "n": phase = "end"; break;
-                                                        case "y": System.out.println("Got it."); break;
+                                                        case "y": System.out.println("Got it."); name += ", "; break;
                                                         default: System.out.println("how did you get this far and"); System.out.println("still fail to enter a valid response? "); loopEnd = true; break;
                                                 }
                                                 }
