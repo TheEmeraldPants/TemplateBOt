@@ -74,7 +74,7 @@ public class Main
                         case "veg": {
                                 System.out.println("Are you a vegetarian?");
                                 String resp = in.nextLine();
-                                switch(interpretResponse(resp, "yesOrNo")) {
+                                switch(interpretResponse(resp.toLowerCase(), "yesOrNo")) {
                                         case "y": {
                                                 System.out.println("Don't worry, we have vegetarian options!");
                                                 isVegetarian = true;
