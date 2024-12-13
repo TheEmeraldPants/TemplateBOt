@@ -118,6 +118,7 @@ public class Main
                                 }
                                 System.out.println("What would you like to order?");
                                 String orderType = scanr1.nextLine();
+                                orderName = interpretResponse(orderType, "menuItems");
                                 if (interpretResponse(orderType.toLowerCase(), "menuItems").equals("ERROR")) {
                                         System.out.println("I'm sorry, but that's not on the menu. Please order something on the menu.");
                                 }
@@ -129,7 +130,7 @@ public class Main
                                         break;
                                 } 
                                 else {
-                                        orderName = orderType;
+                                        
                                         boolean ingredientCheck = true;
                                         while(ingredientCheck){
                                                 System.out.println("These are your ingredient choices");
@@ -143,23 +144,22 @@ public class Main
                                                 
                                                 System.out.println("What ingredients would you like?");
                                                 String userIngredient = scanr2.nextLine();
-                                                if(userIngredient.toLowerCase().indexOf("done") != - 1){
+                                                if(userIngredient.toLowerCase().contains("done")){
                                                         ingredientCheck = false;
                                                         break;
                                                 }
                                                 
-                                                if(userIngredient.toLowerCase().indexOf("exit") != -1) {
+                                                if(userIngredient.toLowerCase().contains("exit")) {
                                                         phase = "end";
                                                         break;
                                                 }
 
                                                 Boolean isInMenu = false;
                                                 for(Food ingredient : ingredients){
-                                                        if(userIngredient.toLowerCase().indexOf(ingredient.getName()) != -1){
+                                                        if(userIngredient.toLowerCase().contains(ingredient.getName())){
                                                                 isInMenu = true;
                                                                 orderIngredients.add(ingredient);
                                                                 System.out.println(ingredient.getName() + " has been added to your order.");
-                                                                break;
                                                         }
                                                 }
                                                  
@@ -220,7 +220,7 @@ public class Main
                                                         break;
                                                 default:
                                                         System.out.println(randMessage(error));
-                                                        System.out.print(" Please type 'price', 'calories', 'both', or 'neither'."); loop = true; break;
+                                                        System.out.println(" Please type 'price', 'calories', 'both', or 'neither'."); loop = true; break;
                                                 }
                                         }
                                         if (phase != "end") {
@@ -301,7 +301,7 @@ public class Main
                         case "menuItems": {
                                 for (String order : orderTypes) {
                                         int index = resp.indexOf(order);
-                                        if (index != -1) orderCount++; item = order;
+                                        if (index != -1){ orderCount++; item = order; }
                                 }
                                 if (orderCount > 1) item = "ERROR: MULTIPLE";
                                 else if (orderCount == 0) item = "ERROR";
