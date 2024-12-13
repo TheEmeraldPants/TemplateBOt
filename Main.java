@@ -14,7 +14,7 @@ public class Main
     static String[] goodBye = {"Thank you for shopping with" + ANSI_BLACK_BOLD + " Chipotle!" + ANSI_RESET, "Have a good day!", ANSI_BLACK_BOLD + "ChipotleBot" + ANSI_RESET + " out", "Come back soon!"};
     static String[] greetings = {"Hello! My name is"+ ANSI_BLACK_BOLD + " ChipotleBot." + ANSI_RESET, "Hi! I'm" + ANSI_BLACK_BOLD + " ChipotleBot." + ANSI_RESET, "Hey," + ANSI_BLACK_BOLD + " ChipotleBot" + ANSI_RESET + " here.", "wsg fam"};
     static String[] error = {"I'm sorry, but there's been a miscommunication", "I'm sorry, I don't understand.", "I don't understand", "bro wtf you on"};
-    static String[] affirmative = {"yes", "yeah", "yea", "sure", "ok", "okay", "affirmative", "I would", "want", "I am"};
+    static String[] affirmative = {"yes", "yeah", "yea", "sure", "ok", "okay", "affirmative", "I would", "want", "I am", "I do"};
     static String[] negative = {"no", "nah", "naw", "not", "negative", "nay", "never", "nope"};
     static String[] evil = {"how dare you", "You will regret that decision.", "Sleep with one eye open tonight."};
 
