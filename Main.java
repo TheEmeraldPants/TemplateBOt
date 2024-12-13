@@ -7,14 +7,18 @@ public class Main
     //CREATE INSTANCE VARIABLES HERE. Ensure they are static.
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RESET = "\u001B[0m";     
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK_BOLD = "\033[1;30m";
+
     //May want to create an array of goodbye answers.
-    static String[] goodBye = {"Thank you for shopping with Chipotle!", "Have a good day!", "ChipotleBot out", "Come back soon!"};
-    static String[] greetings = {"Hello! My name is ChipotleBot.", "Hi! I'm ChipotleBot.", "Hey, ChipotleBot here.", "wsg fam"};
+    static String[] goodBye = {"Thank you for shopping with" + ANSI_BLACK_BOLD + " Chipotle!" + ANSI_RESET, "Have a good day!", ANSI_BLACK_BOLD + "ChipotleBot" + ANSI_RESET + " out", "Come back soon!"};
+    static String[] greetings = {"Hello! My name is"+ ANSI_BLACK_BOLD + " ChipotleBot." + ANSI_RESET, "Hi! I'm" + ANSI_BLACK_BOLD + " ChipotleBot." + ANSI_RESET, "Hey," + ANSI_BLACK_BOLD + " ChipotleBot" + ANSI_RESET + " here.", "wsg fam"};
     static String[] error = {"I'm sorry, but there's been a miscommunication", "I'm sorry, I don't understand.", "I don't understand", "bro wtf you on"};
     static String[] affirmative = {"yes", "yeah", "yea", "sure", "ok", "okay", "affirmative", "I would", "want", "I am"};
     static String[] negative = {"no", "nah", "naw", "not", "negative", "nay", "never", "nope"};
-   
+    static String[] evil = {"how dare you", "You will regret that decision.", "Sleep with one eye open tonight."};
+
+
    private static final String[] orderTypes = {"burrito", "bowl", "taco"};
     //creating ingredients
   private static final Food[] ingredients = {
@@ -41,6 +45,8 @@ public class Main
         double price = 0.0;
         String name = "";
         String orderName = "";
+        ArrayList<String> order = new ArrayList<>();
+        int ordCount = 0;
         boolean isVegetarian = false;
         while (active)
         {
@@ -60,7 +66,7 @@ public class Main
                                                         break;
                                                 case "n":
                                                         loop = false;
-                                                        System.out.println(ANSI_RED + "how dare you" + ANSI_RESET);
+                                                        System.out.println(ANSI_RED + randMessage(evil) + ANSI_RESET);
                                                         phase = "end";
                                                         break;
                                                 case "exit":
@@ -152,6 +158,7 @@ public class Main
                                                         if(userIngredient.toLowerCase().indexOf(ingredient.getName()) != -1){
                                                                 isInMenu = true;
                                                                 orderIngredients.add(ingredient);
+                                                                System.out.println(ingredient.getName() + " has been added to your order.");
                                                                 break;
                                                         }
                                                 }
@@ -177,12 +184,14 @@ public class Main
                                                 name += "and " + orderIngredients.getLast().getName();
                                         }
                                         else name += orderIngredients.getFirst().getName();
+                                        order.add(ordCount, name);
 
                                         Scanner scanr3 = new Scanner (System.in);
                                         boolean loop = true;
                                         if (phase == "end") loop = false;
                                         while (loop) {
-                                                System.out.println("You Ordered: " + name);
+                                                System.out.println("You Ordered:");
+                                                for(String o : order){ System.out.println(o); };
                                                 System.out.println("Would you like to know the 'price', the 'calories', 'both', or 'neither' of your order?");
                                                 String finalResponse = scanr3.nextLine().toLowerCase();
                                                 loop = false;
@@ -222,7 +231,7 @@ public class Main
                                                 loopEnd = false;
                                                 switch (interpretResponse(resp.toLowerCase(), "yesOrNo")) {
                                                         case "n": phase = "end"; break;
-                                                        case "y": System.out.println("Got it."); name += ", "; break;
+                                                        case "y": System.out.println("Got it."); name = ""; ordCount++; break;
                                                         default: System.out.println("how did you get this far and"); System.out.println("still fail to enter a valid response? "); loopEnd = true; break;
                                                 }
                                                 }
